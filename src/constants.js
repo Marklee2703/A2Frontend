@@ -1,0 +1,1 @@
+export const BASE_URL = "https://a2-ten.vercel.app/";
