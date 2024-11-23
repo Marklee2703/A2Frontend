@@ -3,13 +3,13 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 
 function Semester() {
-    const [semesters, setSemesters] = useState([]);
+    const [lectures, setLectures] = useState([]);
 
     useEffect(() => {
         axios
-            .get("http://127.0.0.1:8000/api/semesters/")
+            .get("http://127.0.0.1:8000/api/lectures/")
             .then((response) => {
-                setSemesters(response.data.data);
+                setLectures(response.data.data);
             })
             .catch((error) => {
                 console.error("Error fetching semesters:", error);
@@ -18,17 +18,16 @@ function Semester() {
 
     return (
         <div>
-            <Link to={`/semesters/add`} style={{color: 'red'}}>Create new data</Link>
 
-            {semesters.length > 0 ? (
-                semesters.map((s) => (
+            {lectures.length > 0 ? (
+                lectures.map((s) => (
                     <div key={s.id}>
                         <p>ID: {s.id}</p>
-                        <Link to={`/semesters/${s.id}`}>View Detail</Link>
-                        <p>Year: {s.year}</p>
-                        <p>Semester: {s.semester}</p>
-                        <p>Start Date: {s.start_date}</p>
-                        <p>End Date: {s.end_date}</p>
+                        <Link to={`/lectures/${s.id}`}>View Detail</Link>
+                        <p>Staff_id: {s.staff_id}</p>
+                        <p>Name: {s.user.first_name+ "" + s.user.last_name}</p>
+                        <p>Date of Birth: {s.date_of_birth}</p>
+
                         <p>--------------------------</p>
 
                     </div>
